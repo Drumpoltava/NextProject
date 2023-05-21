@@ -110,7 +110,7 @@ export default function StartFirstProject() {
                     })}
                   </div>
                 </div>
-                <div className="col-6">
+                <div className="d-grid gap-2 col-6">
                   <button type="submit" className="btn btn-primary btn-sm">
                     Add Project
                   </button>
