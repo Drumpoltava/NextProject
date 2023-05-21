@@ -1,0 +1,1 @@
+export const classes = (...cls) => cls.join(' ')
