@@ -1,0 +1,21 @@
+.container {
+    padding: 3rem 2rem;
+    height: 100vh;
+ 
+}
+
+.blue  {
+    color: #00a6ff;
+}
+
+.h3 {
+    margin-bottom: 2rem;
+}
+
+.listRadio {
+    margin-bottom: 26px;
+}
+
+.formCheckInput{
+    background-color: black;
+}
