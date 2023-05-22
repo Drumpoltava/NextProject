@@ -9,6 +9,9 @@ export default function ProjectDetails() {
 
   const projectDetailsFormSubmit = (event) => {
     event.priventDefault();
+    console.log('submit');
+
+    const clickedContinue = event.target.value;
   };
 
   const onOptionChange = (event) => {
