@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 import { classes } from '@/utils/common';
 
 export default function ProjectDetails() {
-  const [radioButtonsName, setRadioButtonsName] = useState('');
+  const [radioButtonsName, setRadioButtonsName] = useState('Grow My Community');
 
   const projectDetailsFormSubmit = (event) => {
     event.priventDefault();
@@ -15,7 +15,7 @@ export default function ProjectDetails() {
   };
 
   const onOptionChange = (event) => {
-    setRadioButtonsName(event.target.value);
+    setRadioButtonsName(event.target.name);
   };
 
   return (
