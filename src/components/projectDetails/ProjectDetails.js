@@ -1,22 +1,43 @@
 import { useState } from 'react';
-import Head from 'next/head';
-import DefaultLayout from '@/components/layout/Default';
 import styles from './styles.module.css';
 import { classes } from '@/utils/common';
+import Head from 'next/head';
+import DefaultLayout from '@/components/layout/Default';
+import detailsCategoriesData from '@/data/detailsCategories';
 
 export default function ProjectDetails() {
-  const [radioButtonsName, setRadioButtonsName] = useState('Grow My Community');
+  const [radioButtonsName, setRadioButtonsName] = useState(
+    detailsCategoriesData.map((d) => ({ ...d, checked: false }))
+  );
 
   const projectDetailsFormSubmit = (event) => {
     event.priventDefault();
-    console.log('submit');
 
-    const clickedContinue = event.target.value;
+    const startProjectFormData = {
+      radioButtonsName: radioButtonsName,
+      detailsName: detailsName.target.value,
+    };
+    console.log(startProjectFormData);
   };
 
   const onOptionChange = (event) => {
-    setRadioButtonsName(event.target.name);
+    const clickedDetail = event.target.innerText;
+
+    setRadioButtonsName((oldState) => {
+      return oldState.map((detail) => {
+        if (detail.name === clickedDetail) {
+          return {
+            ...detail,
+            checked: !detail.checked,
+          };
+        } else {
+          return { ...detail };
+        }
+      });
+    });
   };
+
+  // const handleDetailsCategoriesClick = () => {};
 
   return (
     <>
@@ -25,6 +46,7 @@ export default function ProjectDetails() {
         <meta name="description" content="Project Details" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        'Grow My Community'
       </Head>
       <DefaultLayout>
         <div className={styles.container}>
@@ -34,68 +56,44 @@ export default function ProjectDetails() {
           <form onSubmit={projectDetailsFormSubmit}>
             <div className="row">
               <div className="col-sm-12 col-mid-8 col-lg-6">
-                <div className={classes('form-check', styles.listRadio)}>
+                {/* <div className={classes('form-check', styles.listRadio)}>
                   <input
                     className="form-check-input"
                     type="radio"
-                    name="Grow My Community"
-                    id="Grow My Community"
+                    name="flexRadioDefault"
+                    value="Grow My Community"
+                    id="flexRadioDefault1"
                     checked={radioButtonsName === 'Grow My Community'}
                     onChange={onOptionChange}
                   />
                   <label
                     className="form-check-label"
-                    htmlFor="Grow My Community"
+                    htmlFor="flexRadioDefault1"
                   >
                     Grow My Community
                   </label>
-                </div>
-                <div className={classes('form-check', styles.listRadio)}>
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="Activate Existing Members"
-                    id="Activate Existing Members"
-                    checked={radioButtonsName === 'Activate Existing Members'}
-                    onChange={onOptionChange}
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="Activate Existing Members"
-                  >
-                    Activate Existing Members
-                  </label>
+                </div> */}
+
+                <div>
+                  {radioButtonsName.map((detail) => {
+                    return (
+                      <label
+                        className={classes('form-check', styles.listRadio)}
+                        key={detail.id}
+                      >
+                        {detail.name}
+                        <input
+                          // onClick={handleDetailsCategoriesClick}
+                          className="form-check-input"
+                          type="radio"
+                          // checked={!radioButtonsName}
+                          onChange={onOptionChange}
+                        />
+                      </label>
+                    );
+                  })}
                 </div>
 
-                <div className={classes('form-check', styles.listRadio)}>
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="Understand My Members"
-                    id="Understand My Members"
-                    checked={radioButtonsName === 'Understand My Members'}
-                    onChange={onOptionChange}
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="Understand My Members"
-                  >
-                    Understand My Members
-                  </label>
-                </div>
-                <div className={classes('form-check', styles.listRadio)}>
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="Other"
-                    id="Other"
-                    checked={radioButtonsName === 'Other'}
-                    onChange={onOptionChange}
-                  />
-                  <label className="form-check-label" htmlFor="Other">
-                    Other
-                  </label>
-                </div>
                 <div className="d-grid gap-4 col-6 d-md-flex justify-content-md-start">
                   <button type="submit" className="btn btn-dark col-3">
                     Back

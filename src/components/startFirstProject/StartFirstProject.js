@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import styles from './styles.module.css';
+import { classes } from '@/utils/common';
 import Head from 'next/head';
 import DefaultLayout from '@/components/layout/Default';
-import { classes } from '@/utils/common';
 import projectCategoriesData from '@/data/projectCategories';
 
 export default function StartFirstProject() {
@@ -33,12 +33,12 @@ export default function StartFirstProject() {
   const startProjectFormSubmit = (event) => {
     event.preventDefault();
 
-    const formData = {
+    const startProjectFormData = {
       projectCategories: projectCategories,
       projectName: projectNameRef.current.value,
       projectUrl: projecUrlRef.current.value,
     };
-    console.log(formData);
+    console.log(startProjectFormData);
   };
 
   return (

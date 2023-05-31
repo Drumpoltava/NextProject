@@ -16,7 +16,7 @@ export default function LeftBar() {
       name: 'Project Details',
     },
     {
-      href: '/project',
+      href: '/create-project',
       name: 'Create Project',
     },
   ];
