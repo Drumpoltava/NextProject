@@ -11,27 +11,23 @@ export default function ProjectDetails() {
   );
 
   const projectDetailsFormSubmit = (event) => {
-    event.priventDefault();
+    event.preventDefault();
 
     const startProjectFormData = {
-      radioButtonsName: radioButtonsName,
-      detailsName: detailsName.target.value,
+      radioButtonsName: radioButtonsName
     };
+
     console.log(startProjectFormData);
   };
 
   const onOptionChange = (event) => {
-    const clickedDetail = event.target.innerText;
+    const clickedValue = parseInt(event.target.value);
 
     setRadioButtonsName((oldState) => {
       return oldState.map((detail) => {
-        if (detail.name === clickedDetail) {
-          return {
-            ...detail,
-            checked: !detail.checked,
-          };
-        } else {
-          return { ...detail };
+        return {
+          ...detail,
+          checked: detail.id === clickedValue
         }
       });
     });
@@ -85,8 +81,10 @@ export default function ProjectDetails() {
                         <input
                           // onClick={handleDetailsCategoriesClick}
                           className="form-check-input"
+                          name="myName"
+                          value={detail.id}
                           type="radio"
-                          // checked={!radioButtonsName}
+                          checked={detail.checked}
                           onChange={onOptionChange}
                         />
                       </label>
